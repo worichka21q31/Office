@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://eej2elcw345o"]
+
+[ext_resource type="Script" uid="uid://d3cum1n822lbv" path="res://scripts/enemy_scr/orc/orc_scr.gd" id="1_c63p4"]
+[ext_resource type="Script" uid="uid://co3faf7oxfo34" path="res://scripts/enemy_scr/orc/orc_hitbox.gd" id="2_i0tpt"]
+[ext_resource type="Shader" uid="uid://bwo0wn6v450c0" path="res://resources/Hit_Flash.tres" id="3_7eogq"]
+[ext_resource type="Texture2D" uid="uid://dqoxe21ubpu7h" path="res://assets/enemy_ass/Orc.png" id="3_lkwx7"]
+[ext_resource type="Script" uid="uid://bvh4xfvn6ps8a" path="res://scripts/enemy_scr/orc/hit_Flash.gd" id="5_nb6qy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w18v5"]
+size = Vector2(112, 112)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb6qy"]
+resource_local_to_scene = true
+resource_name = "Hit_Flash"
+shader = ExtResource("3_7eogq")
+shader_parameter/enabled = false
+shader_parameter/hit_color = Color(1, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwqgs"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3adf"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jeam"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejhqg"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tifw"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7inn"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeva5"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktpgj"]
+atlas = ExtResource("3_lkwx7")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmcog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwqgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3adf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jeam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejhqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tifw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7inn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeva5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktpgj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w18v5"]
+radius = 39.999996
+
+[node name="orc" type="CharacterBody2D" unique_id=921288493]
+collision_layer = 0
+collision_mask = 0
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_c63p4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1363448986 groups=["enemy"]]
+script = ExtResource("2_i0tpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2099937856]
+shape = SubResource("RectangleShape2D_w18v5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1606561439]
+material = SubResource("ShaderMaterial_nb6qy")
+position = Vector2(-1.1444092e-05, 4.020899)
+scale = Vector2(6.684073, 7.5195823)
+sprite_frames = SubResource("SpriteFrames_pmcog")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.37958503
+script = ExtResource("5_nb6qy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=209481950]
+shape = SubResource("CircleShape2D_w18v5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2135863538]
+avoidance_enabled = true
+avoidance_layers = 3
+avoidance_mask = 3
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1668374760]
+wait_time = 0.5
+autostart = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

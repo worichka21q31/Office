@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b0aw18o0dsno7"]
+
+[ext_resource type="Script" uid="uid://dxgvtfh7bppht" path="res://scripts/enemy_scr/orc/combat_scr/attack_orc.gd" id="1_b1gim"]
+[ext_resource type="Texture2D" uid="uid://c6tm76tfqsnrx" path="res://assets/character_ass/Magic_viking.png" id="2_0fsce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhn4s"]
+size = Vector2(136, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggui4"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(64, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14mke"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(96, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1b1w"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(128, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5usfh"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(160, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn0g7"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(192, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j07hw"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(224, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85son"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(256, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3itnw"]
+atlas = ExtResource("2_0fsce")
+region = Rect2(288, 0, 32, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2adrk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggui4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14mke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1b1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5usfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn0g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j07hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85son")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3itnw")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="attack_orc" type="Area2D" unique_id=2146368786]
+script = ExtResource("1_b1gim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2038422554]
+position = Vector2(60, 0)
+shape = SubResource("RectangleShape2D_qhn4s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1485988266]
+position = Vector2(60.021072, -4.8620294e-08)
+rotation = -1.5707964
+scale = Vector2(3.9969118, 5.2558365)
+sprite_frames = SubResource("SpriteFrames_2adrk")
+autoplay = "default"
+frame_progress = 1.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

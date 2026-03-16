@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://rtcli8s3sfcw"]
+
+[ext_resource type="Script" uid="uid://ltt4k7g87f63" path="res://scripts/character_scr/ui_scr/hb_bar.gd" id="1_la8j3"]
+[ext_resource type="Shader" uid="uid://cocbcxhdlnjpf" path="res://assets/ui_ass/shaders/texture_progress_bar.gdshader" id="2_jqa36"]
+[ext_resource type="Texture2D" uid="uid://taicqsxgo1fu" path="res://assets/ui_ass/Ind_Health_right.png" id="2_mjh0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64oio"]
+bg_color = Color(0.09411765, 0.09019608, 0.10980392, 1)
+corner_radius_top_right = 11925
+corner_radius_bottom_right = 75300
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64oio"]
+shader = ExtResource("2_jqa36")
+shader_parameter/progress = 1.0
+shader_parameter/progress_tail = 1.0
+shader_parameter/tail_color = Color(1, 1, 1, 1)
+shader_parameter/hp_Color = Color(255, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vanhw"]
+
+[node name="TextureRect" type="PanelContainer" unique_id=1760083593]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = -880.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_64oio")
+script = ExtResource("1_la8j3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=863969022]
+layout_mode = 2
+
+[node name="ProjTectured" type="TextureRect" parent="HBoxContainer" unique_id=1561325197]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_64oio")
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("2_mjh0v")
+
+[node name="Control" type="Control" parent="." unique_id=476288255]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control" unique_id=1878322720]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 1
+offset_right = 14.0
+offset_bottom = 15.0
+scale = Vector2(6.0399985, 3.6795394)
+size_flags_horizontal = 0
+text = " Hp  "
+label_settings = SubResource("LabelSettings_vanhw")

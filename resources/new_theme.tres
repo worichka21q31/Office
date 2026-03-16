@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://dq4rgvsiykbqo"]
+
+[resource]
+default_font_size = 100
+Button/colors/font_hover_color = Color(0.44291058, 0.44291067, 0.44291162, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)

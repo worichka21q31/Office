@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c227a0mg6u208"]
+
+[ext_resource type="Script" uid="uid://dqvwc5suxryx8" path="res://scripts/enemy_scr/orc/combat_scr/attack_orc_y.gd" id="1_l3ub6"]
+[ext_resource type="Texture2D" uid="uid://c6tm76tfqsnrx" path="res://assets/character_ass/Magic_viking.png" id="2_ad5iy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd1aj"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(64, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh18i"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(96, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dub1b"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(128, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejksc"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(160, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlxai"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(192, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp3sc"]
+atlas = ExtResource("2_ad5iy")
+region = Rect2(224, 0, 32, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5okb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd1aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh18i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dub1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejksc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlxai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp3sc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62532"]
+size = Vector2(136, 128)
+
+[node name="attack_orc_y" type="Area2D" unique_id=1290672887]
+script = ExtResource("1_l3ub6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=530492442]
+position = Vector2(3.8146973e-06, 120)
+scale = Vector2(3.9969118, 5.23077)
+sprite_frames = SubResource("SpriteFrames_p5okb")
+autoplay = "default"
+frame_progress = 1.0
+offset = Vector2(0, -11.470586)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=720912556]
+position = Vector2(-1.7484555e-07, 60)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_62532")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
