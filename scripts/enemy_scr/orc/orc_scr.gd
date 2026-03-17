@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var Goal: Node2D = null  # будет найден в _ready
 var distance_attack: int = 131
-var hp: float = 10
+var hp: float = 100
 var movement_speed: float = 500.0
 var attack_scene = preload("res://scenes/enemy/orc/combat/attack_orc.tscn")
 var attack_scene_down = preload("res://scenes/enemy/orc/combat/attack_orc_y.tscn")

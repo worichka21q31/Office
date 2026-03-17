@@ -3,7 +3,7 @@ extends Area2D
 var take_damage_cadr: int = 1
 var crit_damage: float  = 1.5
 var crit_chache: int  = 10
-var damage: float = 5
+var damage: float = 1
 var rng = RandomNumberGenerator.new()
 @onready var anim = $AnimatedSprite2D
 var player_in_area: bool = false
@@ -27,6 +27,7 @@ func _process(_delta):
 		elif random_number > crit_chache :
 			global_variable.hp -= damage 
 		player_in_area = false
+		
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	self.queue_free()

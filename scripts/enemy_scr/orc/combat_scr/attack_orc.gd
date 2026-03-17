@@ -3,7 +3,7 @@ extends Area2D
 var take_damage_cadr: int = 1
 var crit_damage: float  = 1.5
 var crit_chache: int  = 10
-var damage: float = 5
+var damage: float = 1
 var rng = RandomNumberGenerator.new()
 @onready var anim = $AnimatedSprite2D
 var player_in_area: bool = false

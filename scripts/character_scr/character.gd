@@ -29,14 +29,13 @@ func is_roll_allowed() -> bool:
 	return can_roll and !global_variable.is_rolling and can_attack()
 
 func _process(delta):
-	
 	if !can_roll:
 		global_variable.roll_cooldown_timer -= delta  
 		if global_variable.roll_cooldown_timer <= 0:
 			can_roll = true
 	
 	if global_variable.is_rolling:
-		roll_timer -= delta
+		roll_timer -= delta * 1.1
 		velocity = roll_direction * global_variable.roll_speed
 		
 		if roll_timer <= 0:
