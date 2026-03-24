@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://qxd7lxnkq2uy" path="res://scripts/levels_scr/level_1/level1.gd" id="1_x3ltn"]
 [ext_resource type="Texture2D" uid="uid://bn1eeg4vjv6i3" path="res://assets/tilemap/base_map/mainlevbuild.png" id="2_f00r8"]
 [ext_resource type="PackedScene" uid="uid://c6a478hvup0dt" path="res://scenes/main_character/character.tscn" id="2_x3ltn"]
-[ext_resource type="Script" uid="uid://dqsqcpjtab287" path="res://scripts/autoload/fade.gd" id="3_0absb"]
 [ext_resource type="PackedScene" uid="uid://eej2elcw345o" path="res://scenes/enemy/orc/orc.tscn" id="5_0absb"]
-[ext_resource type="PackedScene" uid="uid://rtcli8s3sfcw" path="res://scenes/main_character/ui/hb_bar.tscn" id="6_4o7q8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0absb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1303,32 +1301,5 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Character" parent="." unique_id=1231422341 instance=ExtResource("2_x3ltn")]
-position = Vector2(352, 457)
+position = Vector2(342, 322)
 collision_mask = 2
-
-[node name="Fade" type="CanvasLayer" parent="." unique_id=167228675]
-layer = 0
-script = ExtResource("3_0absb")
-
-[node name="TextureRect" parent="Fade" unique_id=1760083593 instance=ExtResource("6_4o7q8")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -217.0
-offset_top = 111.0
-offset_right = 188.8182
-offset_bottom = 183.0
-grow_horizontal = 1
-grow_vertical = 1
-size_flags_horizontal = 0
-
-[node name="ColorRect" type="ColorRect" parent="Fade" unique_id=40189788]
-visible = false
-z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)

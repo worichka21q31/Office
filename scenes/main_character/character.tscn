@@ -4,6 +4,10 @@
 [ext_resource type="Shader" uid="uid://bwo0wn6v450c0" path="res://resources/Hit_Flash.tres" id="2_31ihx"]
 [ext_resource type="Texture2D" uid="uid://dunbpxod6rmr4" path="res://assets/character_ass/pack 3 monster 1.png" id="2_qeq6m"]
 [ext_resource type="Script" uid="uid://csorlcp5y6c0u" path="res://scripts/character_scr/hit_Flash_Player.gd" id="4_yw5b4"]
+[ext_resource type="Script" uid="uid://dmjqycm1n3gxk" path="res://scripts/character_scr/ui_scr/canvas.gd" id="5_yw5b4"]
+[ext_resource type="PackedScene" uid="uid://3yyivnnbyvdk" path="res://scenes/main_character/ui/hb_bar.tscn" id="6_ae8bo"]
+[ext_resource type="Script" uid="uid://byfqf1f3la85g" path="res://scripts/character_scr/ui_scr/roll_bar.gd" id="6_r801m"]
+[ext_resource type="Texture2D" uid="uid://c6oqjet7ohvyu" path="res://assets/character_ass/flip.png" id="7_2agym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ae8bo"]
 resource_local_to_scene = true
@@ -261,6 +265,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dlns"]
 size = Vector2(11.875, 6)
 
+[sub_resource type="LabelSettings" id="LabelSettings_2agym"]
+font_size = 40
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2agym"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeq6m"]
 size = Vector2(28, 36)
 
@@ -284,6 +293,94 @@ shape = SubResource("RectangleShape2D_4dlns")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=506162269]
 scale = Vector2(2, 2)
+
+[node name="Canvas" type="CanvasLayer" parent="Camera2D" unique_id=1029115562]
+script = ExtResource("5_yw5b4")
+
+[node name="Roll_Icon" type="Control" parent="Camera2D/Canvas" unique_id=1708880978]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -110.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="RollBar" type="ProgressBar" parent="Camera2D/Canvas/Roll_Icon" unique_id=1528993119]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -64.0
+offset_right = 56.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("6_r801m")
+
+[node name="Text" type="Label" parent="Camera2D/Canvas/Roll_Icon/RollBar" unique_id=265693203]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_right = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+text = " 
+
+Roll"
+label_settings = SubResource("LabelSettings_2agym")
+
+[node name="Flip" type="Sprite2D" parent="Camera2D/Canvas/Roll_Icon" unique_id=1812901922]
+material = SubResource("CanvasItemMaterial_2agym")
+position = Vector2(3.8146973e-06, -8)
+scale = Vector2(0.14000002, 0.14)
+texture = ExtResource("7_2agym")
+
+[node name="Hp_Bar_pos" type="Control" parent="Camera2D/Canvas" unique_id=1435214956]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 72.0
+offset_bottom = 160.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Canvas/Hp_Bar_pos" unique_id=1320694709]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -105.0
+offset_right = 239.0
+offset_bottom = -48.0
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/Canvas/Hp_Bar_pos/VBoxContainer" unique_id=489990827]
+layout_mode = 2
+
+[node name="Hp_bar" parent="Camera2D/Canvas/Hp_Bar_pos/VBoxContainer/HBoxContainer" unique_id=1760083593 instance=ExtResource("6_ae8bo")]
+layout_mode = 2
+
+[node name="Fade" type="ColorRect" parent="Camera2D/Canvas" unique_id=1052700502]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1074203256 groups=["player"]]
 

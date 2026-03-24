@@ -6,7 +6,7 @@ var max_value: float  = 100.0;
 var value: float  = global_variable.hp:
 	set = set_value
 
-@onready var label = $Control/Label
+@onready var label = $ProjTectured/Label
 @onready var progress_shader : ShaderMaterial = %ProjTectured.material
 
 var tween: Tween

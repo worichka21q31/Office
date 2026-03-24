@@ -4,7 +4,8 @@ extends Node2D
 var time_sec: float = 0.8 
 
 func setup(damage: float, direction: Vector2):
-	label.text = str(damage)
+	label.text = ("%.1f" % damage).replace(".", ",")
+	# Я хочу не точку, а запятую!
 	
 	var spread_distance = 100.0
 	var jump_height = -50.0
@@ -20,7 +21,7 @@ func setup(damage: float, direction: Vector2):
 	#Анимации
 	tween.tween_property(self, "position", target_pos, time_sec).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	#Анимация передрочки в полете
-	tween.tween_property(self, "scale", Vector2(2.5, 2.5), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	#Анимация пропадания с задержкой
 	tween.tween_property(self, "modulate:a", 0.0, time_sec).set_delay(0.3)
 	

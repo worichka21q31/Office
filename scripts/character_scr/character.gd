@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var player_hitbox = $Area2D
-
+@onready var bar = $Camera2D/Canvas/Roll_Icon/RollBar
 var movement = movement_vector()
 var direction = movement.normalized()
 var attack_x_scene = preload("res://scenes/main_character/combat/attack_base.tscn")
@@ -127,6 +127,7 @@ func start_roll():
 	else:
 		roll_direction = Vector2.RIGHT if !animated_sprite.flip_h else Vector2.LEFT
 	
+	bar.start_roll_animation(global_variable.roll_cooldown)
 	animated_sprite.play("roll")
 
 func is_roll_available() -> bool:
