@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://bwjdglqmgoq4g"]
+
+[ext_resource type="Script" uid="uid://0rv8i40bvayv" path="res://scripts/setting_scr/settings.gd" id="1_f4mfi"]
+[ext_resource type="Theme" uid="uid://dq4rgvsiykbqo" path="res://resources/new_theme.tres" id="2_es4n0"]
+[ext_resource type="Script" uid="uid://6dv5e7wp1xqh" path="res://scripts/start_menu_scr/back_to_menu.gd" id="3_gis3k"]
+[ext_resource type="PackedScene" uid="uid://d2c1crn0a8w75" path="res://scenes/setting/volume_slider.tscn" id="4_83j8s"]
+
+[sub_resource type="Theme" id="Theme_nkug2"]
+default_font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_nual6"]
+font_size = 26
+
+[node name="settings" type="Node2D" unique_id=1684818307]
+script = ExtResource("1_f4mfi")
+
+[node name="title" type="Label" parent="." unique_id=597094601]
+offset_right = 1920.0
+offset_bottom = 500.0
+theme = SubResource("Theme_nkug2")
+text = "настройки
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1360050070]
+offset_top = 180.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_es4n0")
+
+[node name="buttensmenu" type="VBoxContainer" parent="CenterContainer" unique_id=1152613101]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="back_to_menu" type="Button" parent="CenterContainer/buttensmenu" unique_id=1836905995]
+layout_mode = 2
+text = "назад"
+script = ExtResource("3_gis3k")
+
+[node name="Effect_slider" parent="." unique_id=1781662136 instance=ExtResource("4_83j8s")]
+offset_left = 715.0
+offset_top = 399.0
+offset_right = 1215.0
+offset_bottom = 562.0
+max_value = 1.0
+bus_name = "Game effects"
+
+[node name="Label" type="Label" parent="Effect_slider" unique_id=56206563]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 526.0
+offset_bottom = 80.0
+text = "Эффекты"
+label_settings = SubResource("LabelSettings_nual6")
+vertical_alignment = 1
+
+[node name="Music_slider" parent="." unique_id=642195930 instance=ExtResource("4_83j8s")]
+offset_left = 715.0
+offset_top = 314.0
+offset_right = 1215.0
+offset_bottom = 477.0
+max_value = 1.0
+bus_name = "Game music"
+
+[node name="Label" type="Label" parent="Music_slider" unique_id=964369448]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 526.0
+offset_bottom = 80.0
+text = "Музыка"
+label_settings = SubResource("LabelSettings_nual6")
+vertical_alignment = 1
+
+[node name="Master_slider" parent="." unique_id=626874722 instance=ExtResource("4_83j8s")]
+offset_left = 715.0
+offset_top = 226.0
+offset_right = 1215.0
+offset_bottom = 389.0
+max_value = 1.0
+
+[node name="Label" type="Label" parent="Master_slider" unique_id=93701479]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 29.0
+offset_right = 526.0
+offset_bottom = 80.0
+text = "Громкость"
+label_settings = SubResource("LabelSettings_nual6")
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/buttensmenu/back_to_menu" to="CenterContainer/buttensmenu/back_to_menu" method="_on_pressed"]
