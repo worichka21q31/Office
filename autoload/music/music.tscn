@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://durbgphw1eurw" path="res://scripts/autoload/music.gd" id="1_wt21p"]
 
 [node name="Music" type="AudioStreamPlayer" unique_id=1219002808]
+bus = &"Game music"
 script = ExtResource("1_wt21p")

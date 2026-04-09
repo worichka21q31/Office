@@ -7,3 +7,4 @@ offset_right = 197.0
 offset_bottom = 131.0
 step = 0.001
 script = ExtResource("1_e8uio")
+bus_name = "Master"

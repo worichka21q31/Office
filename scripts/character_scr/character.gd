@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var player_hitbox = $Area2D
-@onready var bar = $Camera2D/Canvas/Roll_Icon/RollBar
+@onready var bar = $Camera2D/Canvas/HFlowContainer
+@onready var walk_sound_timer = $"../Timer"
 var movement = movement_vector()
 var direction = movement.normalized()
 var attack_x_scene = preload("res://scenes/main_character/combat/attack_base.tscn")
 var attack_y_scene = preload("res://scenes/main_character/combat/attack_base_y.tscn")
+var step_sound = preload("res://autoload/sound_effects/Run.mp3")
 
 
 var roll_timer: float
@@ -63,6 +65,9 @@ func _process(delta):
 	
 	if velocity != Vector2.ZERO:
 		animated_sprite.play("run")
+		if walk_sound_timer.time_left <= 0:
+			$AudioStreamPlayer2D.play()
+			walk_sound_timer.start(0.35);
 		if global_variable.hp <= 0:
 			global_variable.im_Dead = true
 			animated_sprite.play("die")
@@ -127,7 +132,9 @@ func start_roll():
 	else:
 		roll_direction = Vector2.RIGHT if !animated_sprite.flip_h else Vector2.LEFT
 	
-	bar.start_roll_animation(global_variable.roll_cooldown)
+	var roll_deduff = preload("res://scenes/main_character/ui/debuff_bar.tscn")
+	# Добавляем в бар деббафф кулдауна меж рывками
+	bar.add_debuff(roll_deduff, global_variable.roll_cooldown, "res://assets/character_ass/flip.png")
 	animated_sprite.play("roll")
 
 func is_roll_available() -> bool:

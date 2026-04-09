@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://u16qfhdyewuv"]
+
+[ext_resource type="Script" uid="uid://bcxeanf3m8kwj" path="res://scripts/character_scr/ui_scr/debuff_bar.gd" id="1_bethh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bethh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlqc8"]
+bg_color = Color(0.75686276, 0, 0, 0.7294118)
+
+[node name="debuffBar" type="ProgressBar" unique_id=71311219]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bethh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nlqc8")
+fill_mode = 3
+show_percentage = false
+script = ExtResource("1_bethh")
