@@ -9,7 +9,7 @@ var direction = movement.normalized()
 var attack_x_scene = preload("res://scenes/main_character/combat/attack_base.tscn")
 var attack_y_scene = preload("res://scenes/main_character/combat/attack_base_y.tscn")
 var step_sound = preload("res://autoload/sound_effects/Run.mp3")
-
+var deduff = preload("res://scenes/main_character/ui/debuff_bar.tscn")
 
 var roll_timer: float
 var roll_direction = Vector2.ZERO
@@ -103,6 +103,7 @@ func start_atack_x():
 		elif direction.x < 0:
 			area_instance.scale.x = -1
 		animated_sprite.play("idle")
+		bar.add_debuff(deduff, 0.6, "res://assets/icon.svg")
 		add_child(area_instance)
 
 func start_atack_y():
@@ -116,6 +117,7 @@ func start_atack_y():
 			area_instance.position = Vector2(0, -5)
 			area_instance.scale.y = 1
 		animated_sprite.play("idle")
+		bar.add_debuff(deduff, 0.6, "res://assets/icon.svg")
 		add_child(area_instance)
 
 func start_roll():
@@ -132,9 +134,8 @@ func start_roll():
 	else:
 		roll_direction = Vector2.RIGHT if !animated_sprite.flip_h else Vector2.LEFT
 	
-	var roll_deduff = preload("res://scenes/main_character/ui/debuff_bar.tscn")
 	# Добавляем в бар деббафф кулдауна меж рывками
-	bar.add_debuff(roll_deduff, global_variable.roll_cooldown, "res://assets/character_ass/flip.png")
+	bar.add_debuff(deduff, global_variable.roll_cooldown, "res://assets/character_ass/flip.png")
 	animated_sprite.play("roll")
 
 func is_roll_available() -> bool:
