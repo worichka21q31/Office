@@ -13,12 +13,12 @@ var deduff = preload("res://scenes/main_character/ui/debuff_bar.tscn")
 
 var roll_timer: float
 var roll_direction = Vector2.ZERO
-var can_roll = true  
 var prevHP = global_variable.hp
 
 func _ready():
 	global_variable.is_rolling = false
 	global_variable.he_is_atack = false
+	add_to_group("player")
 
 
 func can_move() -> bool:
@@ -28,13 +28,11 @@ func can_attack() -> bool:
 	return !global_variable.he_is_atack and !global_variable.im_Dead and !global_variable.is_rolling
 
 func is_roll_allowed() -> bool:
-	return can_roll and !global_variable.is_rolling and can_attack()
+	return global_variable.stamina >= global_variable.roll_cost and !global_variable.is_rolling and can_attack()
 
 func _process(delta):
-	if !can_roll:
-		global_variable.roll_cooldown_timer -= delta  
-		if global_variable.roll_cooldown_timer <= 0:
-			can_roll = true
+	if !global_variable.is_rolling and global_variable.stamina < global_variable.max_stamina:
+		global_variable.stamina = move_toward(global_variable.stamina, global_variable.max_stamina, global_variable.stamina_regen * delta)
 	
 	if global_variable.is_rolling:
 		roll_timer -= delta * 1.1
@@ -125,24 +123,17 @@ func start_roll():
 		return
 	
 	global_variable.is_rolling = true
-	can_roll = false
+	global_variable.stamina -= global_variable.roll_cost 
 	roll_timer = global_variable.roll_duration
-	global_variable.roll_cooldown_timer = global_variable.roll_cooldown
 	
 	if direction != Vector2.ZERO:
 		roll_direction = direction
 	else:
 		roll_direction = Vector2.RIGHT if !animated_sprite.flip_h else Vector2.LEFT
 	
-	# Добавляем в бар деббафф кулдауна меж рывками
-	bar.add_debuff(deduff, global_variable.roll_cooldown, "res://assets/character_ass/flip.png")
+	animated_sprite.play("roll")
+	bar.add_debuff(deduff, global_variable.roll_duration, "res://assets/character_ass/flip.png")
 	animated_sprite.play("roll")
 
 func is_roll_available() -> bool:
 	return is_roll_allowed() 
-
-func get_roll_cooldown_progress() -> float:
-	if can_roll:
-		return 1.0
-	else:
-		return 1.0 - (global_variable.roll_cooldown_timer / global_variable.roll_cooldown)

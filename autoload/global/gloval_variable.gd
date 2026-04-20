@@ -5,6 +5,9 @@ extends Node
 var speed: float =  500.0 
 var hp: float =  100.0 
 var damage: float = 5.0;
+var stamina: float = 100.0
+var max_stamina: float = 100.0
+var stamina_regen: float = 10.0
 
 var crit_damage: float  = 1.5
 var crit_chache: int  = 10
@@ -12,7 +15,8 @@ var crit_chache: int  = 10
 # - Кувырок
 var roll_duration: float = 0.4  
 var roll_cooldown: float = 1.5
-var roll_speed: float = 1500.0 
+var roll_speed: float = 1500.0
+var roll_cost: float = 50.0 
 
 
 # - Это не меняйте

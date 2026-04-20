@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dmjqycm1n3gxk" path="res://scripts/character_scr/ui_scr/canvas.gd" id="5_yw5b4"]
 [ext_resource type="PackedScene" uid="uid://3yyivnnbyvdk" path="res://scenes/main_character/ui/hb_bar.tscn" id="6_ae8bo"]
 [ext_resource type="Script" uid="uid://ckk8hvqrx8alf" path="res://scripts/character_scr/ui_scr/h_flow_container.gd" id="6_r801m"]
+[ext_resource type="PackedScene" uid="uid://y1wu1jf0wyom" path="res://scenes/main_character/ui/stamina_bar.tscn" id="7_2agym"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ae8bo"]
 resource_local_to_scene = true
@@ -291,6 +292,11 @@ scale = Vector2(2, 2)
 [node name="Canvas" type="CanvasLayer" parent="Camera2D" unique_id=1029115562]
 script = ExtResource("5_yw5b4")
 
+[node name="Stamina_bar" parent="Camera2D/Canvas" unique_id=130474896 instance=ExtResource("7_2agym")]
+offset_left = 40.0
+offset_top = 72.0
+offset_bottom = 95.0
+
 [node name="Hp_Bar_pos" type="Control" parent="Camera2D/Canvas" unique_id=1435214956]
 layout_mode = 3
 anchors_preset = 0
@@ -316,9 +322,9 @@ layout_mode = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Camera2D/Canvas" unique_id=504399747]
 offset_left = 15.0
-offset_top = 84.0
+offset_top = 119.0
 offset_right = 271.0
-offset_bottom = 84.0
+offset_bottom = 119.0
 script = ExtResource("6_r801m")
 
 [node name="Fade" type="ColorRect" parent="Camera2D/Canvas" unique_id=1052700502]

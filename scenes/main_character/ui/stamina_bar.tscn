@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://y1wu1jf0wyom"]
+
+[ext_resource type="Script" uid="uid://boosuvjnyx20w" path="res://scripts/character_scr/ui_scr/stamina_bar.gd" id="1_28m6g"]
+[ext_resource type="Shader" uid="uid://cocbcxhdlnjpf" path="res://assets/ui_ass/shaders/texture_progress_bar.gdshader" id="1_crm6k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u60p4"]
+bg_color = Color(0.09411765, 0.09019608, 0.10980392, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crm6k"]
+shader = ExtResource("1_crm6k")
+shader_parameter/progress = 1.0
+shader_parameter/progress_tail = 1.0
+shader_parameter/tail_color = Color(0.2, 0.41960785, 0.29411766, 1)
+shader_parameter/hp_Color = Color(0.23529412, 0.6666667, 0.23529412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28m6g"]
+bg_color = Color(1, 0.92941177, 0.16078432, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_crm6k"]
+font_color = Color(0, 0, 0, 0.34117648)
+
+[node name="Stamina_bar" type="PanelContainer" unique_id=130474896]
+offset_right = 256.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u60p4")
+script = ExtResource("1_28m6g")
+
+[node name="TextureRect" type="PanelContainer" parent="." unique_id=140529946]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_crm6k")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28m6g")
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1586008756]
+layout_mode = 2
+text = " S T A M I N A"
+label_settings = SubResource("LabelSettings_crm6k")
