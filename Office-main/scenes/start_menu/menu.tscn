@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://de44io52aqy5d"]
+
+[ext_resource type="Script" uid="uid://byvxd40s5y6nr" path="res://scripts/start_menu_scr/menu.gd" id="1_puwa8"]
+[ext_resource type="Theme" uid="uid://dq4rgvsiykbqo" path="res://resources/new_theme.tres" id="2_3t5kr"]
+[ext_resource type="Script" uid="uid://d2ur0w60b4q8k" path="res://scripts/start_menu_scr/fade.gd" id="3_puwa8"]
+
+[sub_resource type="Theme" id="Theme_mae5d"]
+default_font_size = 100
+
+[node name="menu" type="Node2D" unique_id=1261923365]
+script = ExtResource("1_puwa8")
+
+[node name="title" type="Label" parent="." unique_id=199502308]
+offset_right = 1920.0
+offset_bottom = 500.0
+theme = SubResource("Theme_mae5d")
+text = "название игры
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=186525265]
+offset_top = 180.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_3t5kr")
+
+[node name="buttensmenu" type="VBoxContainer" parent="CenterContainer" unique_id=2104989952]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="newgame" type="Button" parent="CenterContainer/buttensmenu" unique_id=1138160063]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "новая игра"
+
+[node name="settings" type="Button" parent="CenterContainer/buttensmenu" unique_id=1886439633]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "настройки"
+
+[node name="quit" type="Button" parent="CenterContainer/buttensmenu" unique_id=483527381]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "выйти"
+
+[node name="fade" type="CanvasLayer" parent="." unique_id=600142023]
+script = ExtResource("3_puwa8")
+
+[node name="ColorRect" type="ColorRect" parent="fade" unique_id=383224551]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="CenterContainer/buttensmenu/newgame" to="." method="_on_newgame_pressed"]
+[connection signal="pressed" from="CenterContainer/buttensmenu/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/buttensmenu/quit" to="." method="_on_quit_pressed"]

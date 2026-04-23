@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b76mlnwet0pej"]
+
+[ext_resource type="Script" uid="uid://d0hq1d4qi7d73" path="res://scripts/enemy_scr/damage_popup_scr.gd" id="1_l1cs4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1cs4"]
+font_size = 40
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="damage_popup" type="Node2D" unique_id=1083378223]
+script = ExtResource("1_l1cs4")
+
+[node name="Hp" type="Label" parent="." unique_id=2126470986]
+modulate = Color(1, 0, 0, 1)
+light_mask = 513
+visibility_layer = 513
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 17.0
+offset_bottom = 7.0
+text = "- err"
+label_settings = SubResource("LabelSettings_l1cs4")

@@ -1,0 +1,31 @@
+[gd_resource type="VisualShader" format=3 uid="uid://bwo0wn6v450c0"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_1il2g"]
+parameter_name = "hit_color"
+default_value_enabled = true
+default_value = Color(1, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_8xn5p"]
+parameter_name = "enabled"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_w6nyd"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uo4or"]
+input_name = "color"
+
+[resource]
+mode = 1
+flags/light_only = false
+preview_params/enabled = "false"
+nodes/vertex/0/position = Vector2(360, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_1il2g")
+nodes/fragment/2/position = Vector2(-300, 380)
+nodes/fragment/3/node = SubResource("VisualShaderNodeBooleanParameter_8xn5p")
+nodes/fragment/3/position = Vector2(-280, 100)
+nodes/fragment/4/node = SubResource("VisualShaderNodeIf_w6nyd")
+nodes/fragment/4/position = Vector2(160, 180)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_uo4or")
+nodes/fragment/5/position = Vector2(-300, 640)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 4, 3, 4, 0, 0, 0, 5, 0, 4, 4, 5, 0, 4, 5)
