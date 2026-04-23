@@ -4,6 +4,10 @@ extends CharacterBody2D
 @onready var player_hitbox = $Area2D
 @onready var bar = $Camera2D/Canvas/HFlowContainer
 @onready var walk_sound_timer = $"../Timer"
+@onready var saved_text: Label = $Camera2D/Canvas/Saved_text
+
+var save_path = "user://SaveGame.txt"
+
 var movement = movement_vector()
 var direction = movement.normalized()
 var attack_x_scene = preload("res://scenes/main_character/combat/attack_base.tscn")
@@ -15,11 +19,14 @@ var roll_timer: float
 var roll_direction = Vector2.ZERO
 var prevHP = global_variable.hp
 
+var inventoryPlaceholder = []
+
 func _ready():
 	global_variable.is_rolling = false
 	global_variable.he_is_atack = false
 	add_to_group("player")
-
+	load_game()
+	
 
 func can_move() -> bool:
 	return !global_variable.he_is_atack and !global_variable.im_Dead
@@ -31,6 +38,7 @@ func is_roll_allowed() -> bool:
 	return global_variable.stamina >= global_variable.roll_cost and !global_variable.is_rolling and can_attack()
 
 func _process(delta):
+	print_debug(position)
 	if !global_variable.is_rolling and global_variable.stamina < global_variable.max_stamina:
 		global_variable.stamina = move_toward(global_variable.stamina, global_variable.max_stamina, global_variable.stamina_regen * delta)
 	
@@ -85,6 +93,12 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("ui_accept") and is_roll_allowed():
 		start_roll()
+		
+	if Input.is_action_just_pressed("save"):
+		save_game()
+		saved_text.visible = true;
+		await get_tree().create_timer(1.0).timeout
+		saved_text.visible = false;
 
 func movement_vector():
 	var movement_x = Input.get_action_strength("ui_D") - Input.get_action_strength("ui_A")
@@ -137,3 +151,22 @@ func start_roll():
 
 func is_roll_available() -> bool:
 	return is_roll_allowed() 
+
+func save_game():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(global_variable.hp)
+	file.store_var(position.x)
+	file.store_var(position.y)
+	file.store_var(inventoryPlaceholder)
+	file.close()
+func load_game():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		
+		global_variable.hp = file.get_var(global_variable.hp)
+		position.x = file.get_var(position.x)
+		position.y = file.get_var(position.y)
+		#inventoryPlaceholder = file.get_var(inventoryPlaceholder)
+
+	
+		file.close()

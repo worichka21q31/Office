@@ -14,3 +14,6 @@ func fade(alpha: float , duration: float = 1.0):
 	var tween = get_tree().create_tween()
 	tween.tween_property(color_rect, "color:a", alpha, duration)
 	return tween
+
+
+		
