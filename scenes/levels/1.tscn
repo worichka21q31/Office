@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bn1eeg4vjv6i3" path="res://assets/tilemap/base_map/mainlevbuild.png" id="2_f00r8"]
 [ext_resource type="PackedScene" uid="uid://c6a478hvup0dt" path="res://scenes/main_character/character.tscn" id="2_x3ltn"]
 [ext_resource type="PackedScene" uid="uid://eej2elcw345o" path="res://scenes/enemy/orc/orc.tscn" id="5_0absb"]
-[ext_resource type="AudioStream" uid="uid://d1wd5bdy5rm1d" path="res://autoload/sound_effects/Run.mp3" id="5_4o7q8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0absb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1304,10 +1303,6 @@ collision_mask = 2
 [node name="Character" parent="." unique_id=1231422341 instance=ExtResource("2_x3ltn")]
 position = Vector2(342, 322)
 collision_mask = 2
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Character" unique_id=638530666]
-stream = ExtResource("5_4o7q8")
-bus = &"Game effects"
 
 [node name="Timer" type="Timer" parent="." unique_id=1037117251]
 one_shot = true
