@@ -7,5 +7,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_pressed() -> void:
+	$"../../..".data_save()
 	save_signal.emit()
 	get_tree().change_scene_to_file("res://scenes/start_menu/menu.tscn")
