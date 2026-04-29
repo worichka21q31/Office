@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var walk_sound_timer = $"../Timer"
 @onready var saved_text: Label = $Camera2D/Canvas/Saved_text
 
-var save_path = "user://SaveGame.txt"
+var save_path = "user://SaveGame.json"
 
 var movement = movement_vector()
 var direction = movement.normalized()
@@ -153,20 +153,25 @@ func is_roll_available() -> bool:
 	return is_roll_allowed() 
 
 func save_game():
+	var save_data = {
+		"hp": global_variable.hp,
+		"x": position.x,
+		"y": position.y,
+		"inventory": inventoryPlaceholder
+	}
+	var jsonText = JSON.stringify(save_data)
+	
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(global_variable.hp)
-	file.store_var(position.x)
-	file.store_var(position.y)
-	file.store_var(inventoryPlaceholder)
+	file.store_line(jsonText)
 	file.close()
+	
 func load_game():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
-		
-		global_variable.hp = file.get_var(global_variable.hp)
-		position.x = file.get_var(position.x)
-		position.y = file.get_var(position.y)
-		#inventoryPlaceholder = file.get_var(inventoryPlaceholder)
-
-	
+		var jsonText = file.get_as_text()
 		file.close()
+		var save_data = JSON.parse_string(jsonText)
+		global_variable.hp = save_data.hp
+		position.x = save_data.x
+		position.y = save_data.y
+		inventoryPlaceholder = save_data.inventory
