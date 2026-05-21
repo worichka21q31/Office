@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://3yyivnnbyvdk" path="res://scenes/main_character/ui/hb_bar.tscn" id="6_ae8bo"]
 [ext_resource type="Script" uid="uid://ckk8hvqrx8alf" path="res://scripts/character_scr/ui_scr/h_flow_container.gd" id="6_r801m"]
 [ext_resource type="PackedScene" uid="uid://y1wu1jf0wyom" path="res://scenes/main_character/ui/stamina_bar.tscn" id="7_2agym"]
+[ext_resource type="AudioStream" uid="uid://d1wd5bdy5rm1d" path="res://autoload/sound_effects/Run.mp3" id="9_05yk6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ae8bo"]
 resource_local_to_scene = true
@@ -328,6 +329,7 @@ offset_bottom = 119.0
 script = ExtResource("6_r801m")
 
 [node name="Fade" type="ColorRect" parent="Camera2D/Canvas" unique_id=1052700502]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -335,8 +337,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Saved_text" type="Label" parent="Camera2D/Canvas" unique_id=1134998216]
+visible = false
+offset_left = 1521.0
+offset_top = 6.0
+offset_right = 1913.0
+offset_bottom = 119.0
+text = "Сохранено"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1074203256 groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=798619964]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_qeq6m")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1627982839]
+stream = ExtResource("9_05yk6")
+bus = &"Game effects"
