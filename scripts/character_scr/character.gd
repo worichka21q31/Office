@@ -4,6 +4,20 @@ extends CharacterBody2D
 @onready var player_hitbox = $Area2D
 @onready var bar = $Camera2D/Canvas/HFlowContainer
 @onready var walk_sound_timer = $"../Timer"
+<<<<<<< Updated upstream
+=======
+@onready var saved_text: Label = $Camera2D/Canvas/Saved_text
+
+<<<<<<< Updated upstream
+=======
+const speedUp = preload("res://scenes/items/speedUp_item.tscn")
+const hpUp = preload("res://scenes/items/hp_up_item.tscn")
+const dmgUp = preload("res://scenes/items/dmg_up.tscn")
+
+>>>>>>> Stashed changes
+var save_path = "user://SaveGame.json"
+
+>>>>>>> Stashed changes
 var movement = movement_vector()
 var direction = movement.normalized()
 var attack_x_scene = preload("res://scenes/main_character/combat/attack_base.tscn")
@@ -15,6 +29,14 @@ var roll_timer: float
 var roll_direction = Vector2.ZERO
 var prevHP = global_variable.hp
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+var inventoryPlaceholder = []
+=======
+>>>>>>> Stashed changes
+
+>>>>>>> Stashed changes
 func _ready():
 	global_variable.is_rolling = false
 	global_variable.he_is_atack = false
@@ -31,6 +53,14 @@ func is_roll_allowed() -> bool:
 	return global_variable.stamina >= global_variable.roll_cost and !global_variable.is_rolling and can_attack()
 
 func _process(delta):
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+	print_debug(position)
+=======
+	#print_debug(position)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 	if !global_variable.is_rolling and global_variable.stamina < global_variable.max_stamina:
 		global_variable.stamina = move_toward(global_variable.stamina, global_variable.max_stamina, global_variable.stamina_regen * delta)
 	
@@ -137,3 +167,63 @@ func start_roll():
 
 func is_roll_available() -> bool:
 	return is_roll_allowed() 
+<<<<<<< Updated upstream
+=======
+
+func save_game():
+	var save_data = {
+		"hp": global_variable.hp,
+		"x": position.x,
+		"y": position.y,
+<<<<<<< Updated upstream
+		"inventory": inventoryPlaceholder
+=======
+		"inventory": global_variable.Inventory
+>>>>>>> Stashed changes
+	}
+	var jsonText = JSON.stringify(save_data)
+	
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_line(jsonText)
+	file.close()
+	
+func load_game():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		var jsonText = file.get_as_text()
+		file.close()
+		var save_data = JSON.parse_string(jsonText)
+		global_variable.hp = save_data.hp
+		position.x = save_data.x
+		position.y = save_data.y
+<<<<<<< Updated upstream
+		inventoryPlaceholder = save_data.inventory
+=======
+		global_variable.Inventory = save_data.inventory
+		#Загрузка и спавн предметов на персонаже по айдишнику
+		if !global_variable.Inventory.is_empty():
+			for i in range(global_variable.Inventory.size()):
+				var current: Item = null
+				if global_variable.Inventory[i] == "1":
+					current = speedUp.instantiate()
+					current.item_collected.connect(_on_item_collected) #подключение сигнала
+					current.position = position #на игроке чтобы сразу забрал
+					add_child(current) #почему не спавнит где моя вещь
+				if global_variable.Inventory[i] == "2":
+					current = hpUp.instantiate()
+					current.item_collected.connect(_on_item_collected) 
+					current.position = position 
+					add_child(current) #почему не спавнит где моя вещь
+				if global_variable.Inventory[i] == "3":
+					current = dmgUp.instantiate()
+					current.item_collected.connect(_on_item_collected) 
+					current.position = position
+					add_child(current) #почему не спавнит где моя вещь
+					
+
+
+func _on_item_collected(item: String) -> void:
+	global_variable.Inventory.append(item)
+	print_debug(global_variable.Inventory[global_variable.Inventory.size()-1])
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

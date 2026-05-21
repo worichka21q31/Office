@@ -26,3 +26,6 @@ var he_is_atack: bool = false
 var im_Dead: bool = false
 var is_rolling: bool = false
 var roll_cooldown_timer: float
+
+#Инвентарь
+var Inventory = []

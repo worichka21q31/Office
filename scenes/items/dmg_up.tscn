@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cgpk68qinaf2"]
+
+[ext_resource type="PackedScene" uid="uid://dhwota4xcyc7b" path="res://scenes/items/base_item.tscn" id="1_k4c70"]
+[ext_resource type="Script" uid="uid://deqowdinqkit" path="res://scripts/item_scr/dmg_up.gd" id="2_ghy5w"]
+
+[node name="DmgUp" unique_id=1031833608 instance=ExtResource("1_k4c70")]
+script = ExtResource("2_ghy5w")
+item_id = "3"
+item_name = "Вещь Урон"
+item_description = "Урон много"

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbmohhghfb1s3"]
+
+[ext_resource type="PackedScene" uid="uid://dhwota4xcyc7b" path="res://scenes/items/base_item.tscn" id="1_n5a68"]
+[ext_resource type="Script" uid="uid://dhovcr3ys1aq0" path="res://scripts/item_scr/hp_up_item.gd" id="2_h14t5"]
+
+[node name="HpUp_item" unique_id=1031833608 instance=ExtResource("1_n5a68")]
+script = ExtResource("2_h14t5")
+item_id = "2"
+item_name = "Вещь хп"
+item_description = "хп много"

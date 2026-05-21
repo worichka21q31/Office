@@ -4,7 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://bn1eeg4vjv6i3" path="res://assets/tilemap/base_map/mainlevbuild.png" id="2_f00r8"]
 [ext_resource type="PackedScene" uid="uid://c6a478hvup0dt" path="res://scenes/main_character/character.tscn" id="2_x3ltn"]
 [ext_resource type="PackedScene" uid="uid://eej2elcw345o" path="res://scenes/enemy/orc/orc.tscn" id="5_0absb"]
+<<<<<<< Updated upstream
 [ext_resource type="AudioStream" uid="uid://d1wd5bdy5rm1d" path="res://autoload/sound_effects/Run.mp3" id="5_4o7q8"]
+=======
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://dhwota4xcyc7b" path="res://scenes/items/base_item.tscn" id="5_4o7q8"]
+[ext_resource type="PackedScene" uid="uid://dofqbhwr08nsg" path="res://scenes/items/speedUp_item.tscn" id="6_4o7q8"]
+[ext_resource type="PackedScene" uid="uid://cbmohhghfb1s3" path="res://scenes/items/hp_up_item.tscn" id="7_kpjit"]
+[ext_resource type="PackedScene" uid="uid://cgpk68qinaf2" path="res://scenes/items/dmg_up.tscn" id="8_ijh0y"]
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0absb"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1311,3 +1321,20 @@ bus = &"Game effects"
 
 [node name="Timer" type="Timer" parent="." unique_id=1037117251]
 one_shot = true
+
+[node name="BaseItem" parent="." unique_id=1031833608 instance=ExtResource("5_4o7q8")]
+position = Vector2(1567, -9)
+
+[node name="SpeedUpItem" parent="." unique_id=552257716 instance=ExtResource("6_4o7q8")]
+position = Vector2(1851, -48)
+
+[node name="HpUp_item" parent="." unique_id=1191785281 instance=ExtResource("7_kpjit")]
+position = Vector2(1994, -25)
+
+[node name="DmgUp" parent="." unique_id=1168504802 instance=ExtResource("8_ijh0y")]
+position = Vector2(2120, -13)
+
+[connection signal="item_collected" from="BaseItem" to="Character" method="_on_item_collected"]
+[connection signal="item_collected" from="SpeedUpItem" to="Character" method="_on_item_collected"]
+[connection signal="item_collected" from="HpUp_item" to="Character" method="_on_item_collected"]
+[connection signal="item_collected" from="DmgUp" to="Character" method="_on_item_collected"]

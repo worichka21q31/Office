@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dofqbhwr08nsg"]
+
+[ext_resource type="PackedScene" uid="uid://dhwota4xcyc7b" path="res://scenes/items/base_item.tscn" id="1_2vmwl"]
+[ext_resource type="Script" uid="uid://4wdgvfpwuj2c" path="res://scripts/item_scr/speed_up_item.gd" id="2_ff30h"]
+
+[node name="SpeedUpItem" unique_id=1031833608 instance=ExtResource("1_2vmwl")]
+script = ExtResource("2_ff30h")
+item_id = "1"
+item_name = "Вещь Ускорения"
+item_description = "Ускоряет"
